@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-names_emails = pd.read_csv("invite_list.csv", skipinitialspace=True,
+names_emails = pd.read_csv("guest_list.csv", skipinitialspace=True,
                            dtype={'Name01':str,'Name02':str,'Email':str})
 
 for n, invite in names_emails.iterrows():
@@ -19,7 +19,9 @@ for n, invite in names_emails.iterrows():
 
     cmd = f'mail -r "lynn-and-conor-wedding@palmeri.io (Lynn & Conor)" -s "Lynn Palmeri and Conor Beardsley Wedding" {invite["Email"]} < {email_file}'
 
-    os.system(f"cat {email_file}")
-    print(cmd)
+    #os.system(f"cat {email_file}")
+    #print(cmd)
+    os.system(cmd)
+    print(f'Sent email to {invite["Email"]}.')
 
     os.remove(email_file)
